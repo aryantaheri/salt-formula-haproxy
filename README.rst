@@ -49,10 +49,11 @@ Sample pillar with admin
         enabled: True
         mode: http/tcp
         logging: syslog
-        max_connections: 1024
-        connect_timeout: 5000
-        client_timeout: 50000
-        server_timeout: 50000
+        maxconn: 1024
+        timeout:
+          connect: 5000
+          client: 50000
+          server: 50000
         listens:
         - name: https-in
           bind:
@@ -77,10 +78,11 @@ Sample pillar with custom logging
         enabled: True
         mode: http/tcp
         logging: syslog
-        max_connections: 1024
-        connect_timeout: 5000
-        client_timeout: 50000
-        server_timeout: 50000
+        maxconn: 1024
+        timeout:
+          connect: 5000
+          client: 50000
+          server: 50000
         listens:
         - name: https-in
           bind:
@@ -232,6 +234,11 @@ registries)
             binds:
               - address: ${_param:cluster_vip_address}
                 port: 8082
+                ssl:
+                  enabled: true
+                  # This PEM file needs to contain key, cert, CA and possibly
+                  # intermediate certificates
+                  pem_file: /etc/haproxy/ssl/server.pem
             servers:
               - name: ${_param:cluster_node01_name}
                 host: ${_param:cluster_node01_address}
