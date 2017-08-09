@@ -1,10 +1,10 @@
 applications:
 - haproxy
 parameters:
-  _param:
-    haproxy_admin_password: password
-    haproxy_admin_address: '0.0.0.0'
-    haproxy_admin_port: 9600
+#  _param:
+#    haproxy_admin_password: password
+#    haproxy_admin_address: '0.0.0.0'
+#    haproxy_admin_port: 9600
   haproxy:
     proxy:
       listen:
